@@ -1,0 +1,45 @@
+﻿<Window x:Class="ProjektAsBankkonto.Benutzeroberflaeche.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjektAsBankkonto.Benutzeroberflaeche"
+        mc:Ignorable="d"
+        Title="Sparkasse Humbuk e.V." Height="397.633" Width="604.734">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300*"/>
+            <ColumnDefinition Width="300*"/>
+        </Grid.ColumnDefinitions>
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="112" Margin="10,48,0,0" VerticalAlignment="Top" Width="276">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label x:Name="labelKunde" Content="Kunden" HorizontalAlignment="Left" Height="33" Margin="10,10,0,0" VerticalAlignment="Top" Width="276"/>
+        <Button x:Name="buttonKundeAdd" Content="Kunde anlegen" HorizontalAlignment="Left" Height="25" Margin="10,165,0,0" VerticalAlignment="Top" Width="92" Click="buttonKundeAdd_Click"/>
+        <ListView x:Name="listView_Copy" HorizontalAlignment="Left" Height="112" Margin="10,48,0,0" VerticalAlignment="Top" Width="276" Grid.Column="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label x:Name="labelKonto" Content="Konten von:" HorizontalAlignment="Left" Height="33" Margin="10,10,0,0" VerticalAlignment="Top" Width="73" Grid.Column="1"/>
+        <Button x:Name="buttonKontoAdd" Content="Konto anlegen" HorizontalAlignment="Left" Height="25" Margin="10,165,0,0" VerticalAlignment="Top" Width="92" Grid.Column="1" Click="buttonKontoAdd_Click"/>
+        <Label x:Name="labelKonto_Copy" Content="Hanz Wurst" HorizontalAlignment="Left" Height="33" Margin="88,10,0,0" VerticalAlignment="Top" Width="172" Grid.Column="1"/>
+        <Button x:Name="buttonKundeDelete" Content="Kunde löschen" HorizontalAlignment="Left" Height="25" Margin="107,165,0,0" VerticalAlignment="Top" Width="92"/>
+        <Button x:Name="buttonKontoDelete" Content="Konto löschen" HorizontalAlignment="Left" Height="25" Margin="107,165,0,0" VerticalAlignment="Top" Width="92" Grid.Column="1"/>
+        <Label x:Name="labelKontonummer" Content="Kontonummer:" HorizontalAlignment="Left" Height="33" Margin="10,195,0,0" VerticalAlignment="Top" Width="92" Grid.Column="1"/>
+        <Label x:Name="labelKontoummerNr" Content="826472467462764" HorizontalAlignment="Left" Height="33" Margin="107,195,0,0" VerticalAlignment="Top" Width="179" Grid.Column="1"/>
+        <Label x:Name="labelFiliale" Content="Filiale:" HorizontalAlignment="Left" Height="33" Margin="10,233,0,0" VerticalAlignment="Top" Width="92" Grid.Column="1"/>
+        <Label x:Name="labelFilialeDaten" Content="Sparkasse Humbuk Berlin e.V.&#xD;&#xA;Straßemitlangemnamenundmehr 200&#xD;&#xA;13404, Berlin&#xD;&#xA;Deutschland" HorizontalAlignment="Left" Height="93" Margin="10,266,0,0" VerticalAlignment="Top" Width="276" Grid.Column="1"/>
+        <Label x:Name="labelKundePersoData" Content="Name:&#xD;&#xA;Geburtsdatum:" HorizontalAlignment="Left" Height="44" Margin="10,233,0,0" VerticalAlignment="Top" Width="92"/>
+        <Label x:Name="labelKundePersoDataVal" Content="Herr Hanz Wurst&#xD;&#xA;11.11.1993&#xD;&#xA;" HorizontalAlignment="Left" Height="44" Margin="107,233,0,0" VerticalAlignment="Top" Width="179"/>
+        <Label x:Name="labelKundeAdresse" Content="Adresse:" HorizontalAlignment="Left" Height="77" Margin="10,282,0,0" VerticalAlignment="Top" Width="92"/>
+        <Label x:Name="labelKundeAdresseVal" Content="Ich-wohne-hier Straße 100&#xD;&#xA;13404, Berlin&#xA;Deutschland" HorizontalAlignment="Left" Height="77" Margin="107,282,0,0" VerticalAlignment="Top" Width="179"/>
+
+    </Grid>
+</Window>

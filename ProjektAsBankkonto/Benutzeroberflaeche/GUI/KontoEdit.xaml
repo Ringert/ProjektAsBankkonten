@@ -1,0 +1,25 @@
+﻿<Window x:Class="ProjektAsBankkonto.Benutzeroberflaeche.KontoEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjektAsBankkonto.Benutzeroberflaeche"
+        mc:Ignorable="d"
+        Title="Konto anpassen" Height="312.607" Width="259.249">
+    <Grid Height="290" VerticalAlignment="Bottom">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="labelInhaber" Content="Inhaber:" HorizontalAlignment="Left" Height="29" Margin="10,10,0,0" VerticalAlignment="Top" Width="56"/>
+        <Label x:Name="labelInhaberName" Content="Hanz Wurst" HorizontalAlignment="Left" Height="29" Margin="72,10,0,0" VerticalAlignment="Top" Width="160"/>
+        <Label x:Name="labelFiliale" Content="Filiale" HorizontalAlignment="Left" Height="29" Margin="10,39,0,0" VerticalAlignment="Top" Width="51"/>
+        <ComboBox x:Name="comboBoxFiliale" Text="Filiale wählen..." HorizontalAlignment="Left" Height="27" Margin="10,68,0,0" VerticalAlignment="Top" Width="222" SelectionChanged="comboBoxFiliale_SelectionChanged"/>
+        <Label x:Name="labelKontonummer" Content="Kontonummer:" HorizontalAlignment="Left" Height="29" Margin="10,162,0,0" VerticalAlignment="Top" Width="91"/>
+        <TextBox x:Name="textBoxKontonummer" HorizontalAlignment="Left" Height="27" Margin="10,191,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="222"/>
+        <Label x:Name="labelBlz" Content="Bankleitzahl:" HorizontalAlignment="Left" Height="29" Margin="72,39,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="labelBlzNummer" Content="20050000" HorizontalAlignment="Left" Height="29" Margin="152,39,0,0" VerticalAlignment="Top" Width="80"/>
+        <Label x:Name="labelStraße" Content="Straßemitlangemnamenundmehr 200&#xD;&#xA;13404, Berlin&#xD;&#xA;Deutschland" HorizontalAlignment="Left" Height="57" Margin="10,100,0,0" VerticalAlignment="Top" Width="222"/>
+        <Button x:Name="buttonKontoSave" Content="Speichern" HorizontalAlignment="Left" Height="25" Margin="61,255,0,0" VerticalAlignment="Top" Width="121"/>
+
+    </Grid>
+</Window>
