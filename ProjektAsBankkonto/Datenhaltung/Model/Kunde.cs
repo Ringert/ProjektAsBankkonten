@@ -9,6 +9,8 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
 {
     class Kunde
     {
+        //Wird zur Minimierung der Datenhaltungszugriffe genutzt
+        public static List<Kunde> Instances = new List<Kunde>();
         public int KundenNr { get; set; }
         public string Strasse { get; set; }
         public string Plz { get; set; }

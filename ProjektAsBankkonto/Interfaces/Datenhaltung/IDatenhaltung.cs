@@ -8,6 +8,6 @@ namespace ProjektAsBankkonto.Interfaces.Datenhaltung
 {
     interface IDatenhaltung
     {
-        //Just for type...
+        //Just for Type
     }
 }
