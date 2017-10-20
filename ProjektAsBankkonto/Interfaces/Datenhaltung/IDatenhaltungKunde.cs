@@ -4,7 +4,7 @@ using ProjektAsBankkonto.Datenhaltung.Model;
 
 namespace ProjektAsBankkonto.Interfaces.Datenhaltung
 {
-    interface IDatenhaltungKunde : IDatenhaltung
+    interface IDatenhaltungKunde
     {
         
         bool insertKunde(Kunde kunde);

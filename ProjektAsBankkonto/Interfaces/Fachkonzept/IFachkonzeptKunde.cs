@@ -4,7 +4,7 @@ using ProjektAsBankkonto.Datenhaltung.Model;
 
 namespace ProjektAsBankkonto.Interfaces.Datenhaltung
 {
-    interface IFachkonzeptKunde : IFachkonzept
+    interface IFachkonzeptKunde
     {
         bool saveKunde(Kunde kunde);
         bool deleteKunde(Kunde kunde);

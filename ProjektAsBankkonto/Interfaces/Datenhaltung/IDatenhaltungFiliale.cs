@@ -4,7 +4,7 @@ using ProjektAsBankkonto.Datenhaltung.Model;
 
 namespace ProjektAsBankkonto.Interfaces.Datenhaltung
 {
-    interface IDatenhaltungFiliale : IDatenhaltung
+    interface IDatenhaltungFilialeng
     {
         bool insertFiliale(Filiale filiale);
         bool updateFiliale(Filiale filiale);
