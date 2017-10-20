@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjektAsBankkonto.Interfaces.Fachkonzept
 {
-    public interface IFachkonzept
+    public interface IFachkonzept : IFachkonzeptFiliale, IFachkonzeptKonto, IFachkonzeptKunde
     {
 
     }

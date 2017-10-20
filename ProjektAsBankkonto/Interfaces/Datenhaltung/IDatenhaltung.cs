@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjektAsBankkonto.Interfaces.Datenhaltung
 {
-    interface IDatenhaltung
+    interface IDatenhaltung : IDatenhaltungFiliale, IDatenhaltungKonto, IDatenhaltungKunde
     {
         //Just for Type
     }

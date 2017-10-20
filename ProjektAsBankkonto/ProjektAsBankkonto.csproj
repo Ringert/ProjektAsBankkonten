@@ -126,6 +126,9 @@
     <Compile Include="Interfaces\Datenhaltung\IDatenhaltungFiliale.cs" />
     <Compile Include="Interfaces\Datenhaltung\IDatenhaltungKonto.cs" />
     <Compile Include="Interfaces\Datenhaltung\IDatenhaltungKunde.cs" />
+    <Compile Include="Interfaces\Fachkonzept\IFachkonzeptFiliale.cs" />
+    <Compile Include="Interfaces\Fachkonzept\IFachkonzeptKonto.cs" />
+    <Compile Include="Interfaces\Fachkonzept\IFachkonzeptKunde.cs" />
     <Compile Include="Interfaces\Fachkonzept\IFachkonzept.cs" />
   </ItemGroup>
   <ItemGroup>

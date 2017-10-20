@@ -11,7 +11,7 @@ using ProjektAsBankkonto.Datenhaltung.Model;
 
 namespace ProjektAsBankkonto.Datenhaltung
 {
-    class SQLiteController : IDatenhaltungKunde, IDatenhaltungKonto, IDatenhaltungFiliale
+    class SQLiteController : IDatenhaltung
     {
         private SQLiteConnection m_dbConnection;
 
