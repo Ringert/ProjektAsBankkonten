@@ -6,13 +6,11 @@ namespace ProjektAsBankkonto.Interfaces.Datenhaltung
 {
     interface IDatenhaltungFilialeng
     {
-        bool insertFiliale(Filiale filiale);
-        bool updateFiliale(Filiale filiale);
+        bool addiliale(Filiale filiale);
+        bool editFiliale(Filiale filiale);
         bool deleteFiliale(Filiale filiale);
         Filiale fetchFiliale(int filialeNr);
         Filiale[] fetchAllFilialen();
-        int getAnzahlFilialen();
-        int getGroessteFilialeNr();
-   
+        int getCountFilialen();
     }
 }

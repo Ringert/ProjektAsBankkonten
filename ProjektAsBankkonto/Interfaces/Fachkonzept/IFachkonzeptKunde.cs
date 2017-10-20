@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 using ProjektAsBankkonto.Datenhaltung.Model;
 
-namespace ProjektAsBankkonto.Interfaces.Datenhaltung
+namespace ProjektAsBankkonto.Interfaces.Fachkonzept
 {
     interface IFachkonzeptKunde
     {

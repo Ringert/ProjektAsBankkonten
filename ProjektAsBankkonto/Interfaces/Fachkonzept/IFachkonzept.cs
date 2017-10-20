@@ -8,6 +8,6 @@ namespace ProjektAsBankkonto.Interfaces.Fachkonzept
 {
     public interface IFachkonzept : IFachkonzeptFiliale, IFachkonzeptKonto, IFachkonzeptKunde
     {
-
+        //Just for Type
     }
 }
