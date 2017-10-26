@@ -7,13 +7,38 @@ using ProjektAsBankkonto.Datenhaltung.Enums;
 
 namespace ProjektAsBankkonto.Datenhaltung.Model
 {
-    class Kunde
+    public class Kunde
     {
         //Wird zur Minimierung der Datenhaltungszugriffe genutzt
-        public static List<Kunde> Instances = new List<Kunde>();
-        public int KundenNr { get; set; }
-        public string Strasse { get; set; }
-        public string Plz { get; set; }
+        public static Dictionary<int, Kunde> Instances = new Dictionary<int, Kunde>();
+
+        private DateTime geburtsdatum;
+        private string plz;
+        private string strasse;
+
+        public int KundeNr { get; set; }
+        public string Strasse
+        {
+            get
+            {
+                return this.strasse;
+            }
+            set
+            {
+                //TODO: höchsten 100 Zeichen
+                this.strasse = value;
+            }
+        }
+
+        public string Plz {
+            get {
+                return this.plz;
+            }
+            set {
+                //TODO: höchsten 10 Zeichen
+                this.plz = value;
+            }
+        }
         public string Ort { get; set; }
         public Laender Land { get; set; }
         public Geschlechter Geschlecht { get; set; }
@@ -23,9 +48,10 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
         { 
             get
             {
-                return this.Geburtsdatum;        
+                return this.geburtsdatum;        
             } set
             {
+
                 DateTime now    =   DateTime.Now;
                 int age         =   now.Year - value.Year;
 
@@ -34,7 +60,7 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
                 if(age < 18)
                     throw new FormatException();
             
-                this.Geburtsdatum = value;
+                this.geburtsdatum = value;
             } 
         }
     }

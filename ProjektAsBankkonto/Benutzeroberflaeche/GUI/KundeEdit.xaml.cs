@@ -24,8 +24,8 @@ namespace ProjektAsBankkonto.Benutzeroberflaeche
     /// </summary>
     public partial class KundeEdit : Window
     {
-        public Window MainWindow { get; set; }
-        public KundeEdit(Window mainwindow)
+        public MainWindow MainWindow { get; set; }
+        public KundeEdit(MainWindow mainwindow)
         {
             this.MainWindow = mainwindow;
             InitializeComponent();
@@ -51,6 +51,8 @@ namespace ProjektAsBankkonto.Benutzeroberflaeche
                 throw new FormatException();
             Kunde.Geburtsdatum          =   Convert.ToDateTime(geburtsdatum);
             Kunde.Geschlecht            =   (Geschlechter)this.comboBoxGeschlecht.SelectedValue;
+
+            this.MainWindow.Fachkonzept.saveKunde(ref Kunde);
         }
     }
 }

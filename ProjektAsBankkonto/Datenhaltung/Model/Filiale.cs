@@ -6,20 +6,23 @@ using System.Threading.Tasks;
 
 namespace ProjektAsBankkonto.Datenhaltung.Model
 {
-    class Filiale
+    public class Filiale
     {
         //Wird zur Minimierung der Datenhaltungszugriffe genutzt
-        public static List<Filiale> Instances = new List<Filiale>();
+        public static Dictionary<int, Filiale> Instances = new Dictionary<int, Filiale>();
+
+        private string blz;
+
         public int FilialeNr { get; set; }
         public string Blz
         {
             get
             {
-                return this.Blz;
+                return this.blz;
             }
             set
             {
-                this.Blz = value;
+                this.blz = value;
             }
         }
     }

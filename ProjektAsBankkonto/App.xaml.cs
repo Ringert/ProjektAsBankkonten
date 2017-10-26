@@ -18,7 +18,7 @@ namespace ProjektAsBankkonto
     /// </summary>
     public partial class App : Application
     {
-        private IFachkonzept Fachkonzept;
+        IFachkonzept Fachkonzept;
         private void init(object sender, StartupEventArgs e)
         {
             this.Fachkonzept = new Fachkonzept1(new SQLiteController());

@@ -4,13 +4,13 @@ using ProjektAsBankkonto.Datenhaltung.Model;
 
 namespace ProjektAsBankkonto.Interfaces.Fachkonzept
 {
-    interface IFachkonzeptKunde
+    public interface IFachkonzeptKunde
     {
-        bool saveKunde(Kunde kunde);
-        bool deleteKunde(Kunde kunde);
-        Filiale getOneKunde(int kundeNr);
-        Dctionary<int, Kunde> getAllKunden();
-        Dctionary<int, Kunde> getRangeOfKunden(int begin, int nr);
+        bool saveKunde(ref Kunde kunde);
+        //bool deleteKunde(Kunde kunde);
+        //Filiale getOneKunde(int kundeNr);
+        //Dictionary<int, Kunde> getAllKunden();
+        //Dictionary<int, Kunde> getRangeOfKunden(int begin, int nr);
 
     }
 }

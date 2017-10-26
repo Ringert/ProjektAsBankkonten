@@ -7,15 +7,17 @@ using System.Text.RegularExpressions;
 
 namespace ProjektAsBankkonto.Datenhaltung.Model
 {
-    class Konto
+    public class Konto
     {
         //Wird zur Minimierung der Datenhaltungszugriffe genutzt
-        public static List<Konto> Instances = new List<Konto>();
+        public static Dictionary<string, Konto> Instances = new Dictionary<string, Konto>();
+        private string kontoNr;
+
         public string KontoNr 
         {
             get
             {
-                return this.KontoNr;
+                return this.kontoNr;
             } 
             set
             {
@@ -26,7 +28,7 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
                     throw new FormatException();
                 }
 
-                this.KontoNr = value;
+                this.kontoNr = value;
             }
         }
     }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using ProjektAsBankkonto.Interfaces.Fachkonzept;
 using ProjektAsBankkonto.Interfaces.Datenhaltung;
+using ProjektAsBankkonto.Datenhaltung.Model;
 
 namespace ProjektAsBankkonto.Fachkonzept
 {
@@ -16,6 +17,16 @@ namespace ProjektAsBankkonto.Fachkonzept
         public Fachkonzept1 (IDatenhaltung datenhaltung)
         {
             this.Datenhaltung = datenhaltung;
+        }
+
+        public bool saveKunde(ref Kunde kunde)
+        {
+            int? kundeNr = kunde.KundeNr;
+            if(kundeNr == null) {
+                return this.Datenhaltung.addKunde(ref kunde);
+            } else {
+                return this.Datenhaltung.editKunde(kunde);
+            }
         }
     }
 }

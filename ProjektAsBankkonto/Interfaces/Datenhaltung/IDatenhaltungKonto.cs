@@ -4,15 +4,16 @@ using ProjektAsBankkonto.Datenhaltung.Model;
 
 namespace ProjektAsBankkonto.Interfaces.Datenhaltung
 {
-    interface IDatenhaltungKonto
+    public interface IDatenhaltungKonto
     {
        
-        bool addKonto(Konto konto);
+        bool addKonto(ref Konto konto);
         bool editKonto(Konto konto);
         bool deleteKonto(Konto konto);
         Konto fetchKonto(string kontoNr);
-        Konto[] fetchAllKonten();
-        bool checkKontoNrExists();
+        Dictionary<string, Konto> fetchAllKonten();
+        Dictionary<string, Konto> fetchRangeOfKonten(int nr, int offset);
+        bool checkKontoNrExists(string kontoNr);
         int getCountKonten();
     }
 }
