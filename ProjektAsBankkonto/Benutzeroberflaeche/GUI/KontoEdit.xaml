@@ -2,24 +2,101 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  
         xmlns:local="clr-namespace:ProjektAsBankkonto.Benutzeroberflaeche"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Konto anpassen" Height="300" Width="275"
         mc:Ignorable="d"
-        Title="Konto anpassen" Height="312.607" Width="259.249">
-    <Grid Height="290" VerticalAlignment="Bottom">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Label x:Name="labelInhaber" Content="Inhaber:" HorizontalAlignment="Left" Height="29" Margin="10,10,0,0" VerticalAlignment="Top" Width="56"/>
-        <Label x:Name="labelInhaberName" Content="Hanz Wurst" HorizontalAlignment="Left" Height="29" Margin="72,10,0,0" VerticalAlignment="Top" Width="160"/>
-        <Label x:Name="labelFiliale" Content="Filiale" HorizontalAlignment="Left" Height="29" Margin="10,39,0,0" VerticalAlignment="Top" Width="51"/>
-        <ComboBox x:Name="comboBoxFiliale" Text="Filiale wählen..." HorizontalAlignment="Left" Height="27" Margin="10,68,0,0" VerticalAlignment="Top" Width="222" SelectionChanged="comboBoxFiliale_SelectionChanged"/>
-        <Label x:Name="labelKontonummer" Content="Kontonummer:" HorizontalAlignment="Left" Height="29" Margin="10,162,0,0" VerticalAlignment="Top" Width="91"/>
-        <TextBox x:Name="textBoxKontonummer" HorizontalAlignment="Left" Height="27" Margin="10,191,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="222"/>
-        <Label x:Name="labelBlz" Content="Bankleitzahl:" HorizontalAlignment="Left" Height="29" Margin="72,39,0,0" VerticalAlignment="Top" Width="75"/>
-        <Label x:Name="labelBlzNummer" Content="20050000" HorizontalAlignment="Left" Height="29" Margin="152,39,0,0" VerticalAlignment="Top" Width="80"/>
-        <Label x:Name="labelStraße" Content="Straßemitlangemnamenundmehr 200&#xD;&#xA;13404, Berlin&#xD;&#xA;Deutschland" HorizontalAlignment="Left" Height="57" Margin="10,100,0,0" VerticalAlignment="Top" Width="222"/>
-        <Button x:Name="buttonKontoSave" Content="Speichern" HorizontalAlignment="Left" Height="25" Margin="61,255,0,0" VerticalAlignment="Top" Width="121"/>
+        
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="12"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"  
+        >
+    <Border Padding="10">
+        <StackPanel>
+            <!--Inhaberinfozeile-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="0.65*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
-    </Grid>
-</Window>
+                <materialDesign:PackIcon Grid.Column="0" x:Name="labelInhaberIcon" VerticalAlignment="Center" Kind="Account"></materialDesign:PackIcon>
+
+                <StackPanel Grid.Column="1" >
+                    <TextBlock x:Name="labelInhaberCaption" Padding="5" Text="Inhaber:" Height="22"></TextBlock>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <TextBox x:Name="labelInhaberName"></TextBox>
+                </StackPanel>
+            </Grid>
+            <!--Bankinfozeile-->
+            <Grid Margin="0 10 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <materialDesign:PackIcon Grid.Column="0" x:Name="labelBankIcon" VerticalAlignment="Top" Kind="Bank" Margin="0,4,0,0" HorizontalAlignment="Left" Width="16"></materialDesign:PackIcon>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock x:Name="labelFilialeCaption" Text="Filiale:" Padding="5"></TextBlock>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <TextBlock x:Name="labelBlzCaption" Text="Bankleitzahl:" Padding="5"></TextBlock>
+                </StackPanel>
+
+                <StackPanel Grid.Column="3">
+                    <TextBlock x:Name="labelBlzNummer" Text="200500000" Padding="5"></TextBlock>
+                </StackPanel>
+            </Grid>
+            <ComboBox x:Name="comboBoxFiliale" Text="Filiale:" Padding="5"></ComboBox>
+            <!--Adressinfozeile-->
+            <Grid Margin="0 16 0 10">
+                <materialDesign:Card  Grid.Row="1" Grid.ColumnSpan="4" >
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <materialDesign:PackIcon Grid.Column="0" x:Name="labelMapMarkerIcon" VerticalAlignment="Center" Kind="MapMarker"></materialDesign:PackIcon>
+
+                            <StackPanel Grid.Column="1">
+                                <TextBlock x:Name="labelAdresseCaption" Text="Anschrift:" Padding="5"></TextBlock>
+                            </StackPanel>
+                        </Grid>
+
+                        <TextBlock x:Name="labelStraße" Text="Straßemitlangemnamenundmehr 200" Padding="5"></TextBlock>
+
+                        <TextBlock x:Name="labelOrt" Text="13404 Berlin" Padding="5"></TextBlock>
+
+                        <TextBlock x:Name="labelLand" Text="Deutschland" Padding="5"></TextBlock>
+                    </StackPanel>
+                </materialDesign:Card>
+            </Grid>
+            <!--Kontoinfozeile-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <materialDesign:PackIcon Grid.Column="0" x:Name="AccountCardDetailsIcon" VerticalAlignment="Center" Kind="AccountCardDetails"></materialDesign:PackIcon>
+
+                <StackPanel Grid.Column="1" >
+                    <TextBlock x:Name="labelKontonummer" Text="Kontonummer:" Padding="5"></TextBlock>
+                </StackPanel>
+            </Grid>
+            <TextBox x:Name="textBoxKontonummer" Text="DE21321561465" ></TextBox>
+        </StackPanel>
+    </Border>
+</Window>    
