@@ -91,7 +91,7 @@ namespace ProjektAsBankkonto.Datenhaltung
             return id;
         }
         /********************************* Kunde *********************************/
-        public bool addKunde(ref Kunde kunde)
+        public bool addKunde(Kunde kunde)
         {
             string sql = "INSERT INTO kunden (vorname, nachname, geb_dat, geschlecht, strasse, plz, ort, land) VALUES (@val1,@val2,@val3,@val4,@val5,@val6,@val7,@val8);";
             SQLiteCommand command = new SQLiteCommand(sql, this.m_dbConnection);
@@ -106,10 +106,6 @@ namespace ProjektAsBankkonto.Datenhaltung
 
             int rowCount = command.ExecuteNonQuery();
             kunde.KundeNr = this.getLastInsertedId();
-            if(rowCount > 0)
-            {
-                Kunde.Instances[kunde.KundeNr] = kunde;
-            }
             return (rowCount > 0);
         }
         public bool editKunde(Kunde kunde)
@@ -127,10 +123,6 @@ namespace ProjektAsBankkonto.Datenhaltung
             command.Parameters.Add(new SQLiteParameter("@val9", System.Data.DbType.Int32) { Value = kunde.KundeNr });
 
             int rowCount = command.ExecuteNonQuery();
-            if (rowCount > 0)
-            {
-                Kunde.Instances[kunde.KundeNr] = kunde;
-            }
             return (rowCount > 0);
         }
         public bool deleteKunde(Kunde kunde)
@@ -140,10 +132,6 @@ namespace ProjektAsBankkonto.Datenhaltung
             command.Parameters.Add(new SQLiteParameter("@val1", System.Data.DbType.Int32) { Value = kunde.KundeNr });
 
             int rowCount = command.ExecuteNonQuery();
-            if (rowCount > 0)
-            {
-                Kunde.Instances.Remove(kunde.KundeNr);
-            }
             return (rowCount > 0);
         }
         private Kunde __createKundeFromReader(SQLiteDataReader reader)
@@ -167,11 +155,6 @@ namespace ProjektAsBankkonto.Datenhaltung
         public Kunde fetchKunde(int kundeNr)
         {
             Kunde kunde;
-            if(Kunde.Instances.TryGetValue(kundeNr, out kunde))
-            {
-                return kunde;
-            }
-
             string sql = "SELECT * FROM kunden WHERE kunde_nr = @val1;";
             SQLiteCommand command = new SQLiteCommand(sql, this.m_dbConnection);
             command.Parameters.Add(new SQLiteParameter("@val1", System.Data.DbType.Int32) { Value = kundeNr });
@@ -184,6 +167,7 @@ namespace ProjektAsBankkonto.Datenhaltung
         }
         public Dictionary<int, Kunde> fetchAllKunden()
         {
+            Dictionary<int, Kunde> kunden = new Dictionary<int, Kunde>();
             Kunde kunde;
 
             string sql = "SELECT * FROM kunden;";
@@ -192,10 +176,10 @@ namespace ProjektAsBankkonto.Datenhaltung
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read()) {
                 kunde = this.__createKundeFromReader(reader);
-                Kunde.Instances[kunde.KundeNr] = kunde;
+                kunden[kunde.KundeNr] = kunde;
             }
 
-            return Kunde.Instances;
+            return kunden;
         }
         public Dictionary<int, Kunde> fetchRangeOfKunden(int nr, int offset)
         {
@@ -213,7 +197,6 @@ namespace ProjektAsBankkonto.Datenhaltung
             {
                 kunde = this.__createKundeFromReader(reader);
                 kunden[kunde.KundeNr] = kunde;
-                Kunde.Instances[kunde.KundeNr] = kunde;
             }
 
             return kunden;
@@ -231,7 +214,7 @@ namespace ProjektAsBankkonto.Datenhaltung
             return count;
         }
         /********************************* Filliale *********************************/
-        public bool addFiliale(ref Filiale filiale)
+        public bool addFiliale(Filiale filiale)
         {
             string sql = "INSERT INTO filialen (blz, strasse, plz, ort, land) VALUES (@val1,@val2,@val3,@val4,@val5);";
             SQLiteCommand command = new SQLiteCommand(sql, this.m_dbConnection);
@@ -299,7 +282,6 @@ namespace ProjektAsBankkonto.Datenhaltung
             {
                 return filiale;
             }
-          
 
             string sql = "SELECT * FROM filialen WHERE filiale_nr = @val1;";
             SQLiteCommand command = new SQLiteCommand(sql, this.m_dbConnection);
@@ -370,10 +352,6 @@ namespace ProjektAsBankkonto.Datenhaltung
             command.Parameters.Add(new SQLiteParameter("@val3", System.Data.DbType.Int32) { Value = konto.Filiale.FilialeNr });
 
             int rowCount = command.ExecuteNonQuery();
-            if (rowCount > 0)
-            {
-                Konto.Instances[konto.KontoNr] = konto;
-            }
             return (rowCount > 0);
         }
         public bool editKonto(string kontoNr, Konto konto)
@@ -385,10 +363,6 @@ namespace ProjektAsBankkonto.Datenhaltung
             command.Parameters.Add(new SQLiteParameter("@val3", System.Data.DbType.String) { Value = kontoNr });
 
             int rowCount = command.ExecuteNonQuery();
-            if (rowCount > 0)
-            {
-                Konto.Instances[konto.KontoNr] = konto;
-            }
             return (rowCount > 0);
         }
         public bool deleteKonto(Konto konto)
@@ -398,10 +372,6 @@ namespace ProjektAsBankkonto.Datenhaltung
             command.Parameters.Add(new SQLiteParameter("@val1", System.Data.DbType.String) { Value = konto.KontoNr });
 
             int rowCount = command.ExecuteNonQuery();
-            if (rowCount > 0)
-            {
-                Konto.Instances.Remove(konto.KontoNr);
-            }
             return (rowCount > 0);
         }
         public bool checkKontoNrExists(string kontoNr)
@@ -427,7 +397,7 @@ namespace ProjektAsBankkonto.Datenhaltung
                 Filiale     =               filiale
             };
         }
-        public Dictionary<string, Konto> fetchAllKonten(ref Kunde kunde)
+        public Dictionary<string, Konto> fetchAllKonten(Kunde kunde)
         {
             Konto konto;
 
@@ -439,11 +409,9 @@ namespace ProjektAsBankkonto.Datenhaltung
             while (reader.Read())
             {
                 konto = this.__createKontoFromReader(reader);
-                Konto.Instances[konto.KontoNr] = konto;
                 konto.Kunde = kunde;
                 kunde.Konten[konto.KontoNr] = konto;
             }
-            Kunde.Instances[kunde.KundeNr] = kunde;
 
             return kunde.Konten;
         }

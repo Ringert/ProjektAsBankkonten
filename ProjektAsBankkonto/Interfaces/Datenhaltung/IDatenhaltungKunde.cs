@@ -7,7 +7,7 @@ namespace ProjektAsBankkonto.Interfaces.Datenhaltung
     public interface IDatenhaltungKunde
     {
         
-        bool addKunde(ref Kunde kunde);
+        bool addKunde(Kunde kunde);
         bool editKunde(Kunde kunde);
         bool deleteKunde(Kunde kunde);
         Kunde fetchKunde(int kundeNr);

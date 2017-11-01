@@ -6,7 +6,7 @@ namespace ProjektAsBankkonto.Interfaces.Datenhaltung
 {
     public interface IDatenhaltungFiliale
     {
-        bool addFiliale(ref Filiale filiale);
+        bool addFiliale(Filiale filiale);
         bool editFiliale(Filiale filiale);
         bool deleteFiliale(Filiale filiale);
         Filiale fetchFiliale(int filialeNr);

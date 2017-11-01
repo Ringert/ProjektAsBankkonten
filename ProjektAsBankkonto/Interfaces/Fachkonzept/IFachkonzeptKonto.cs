@@ -6,10 +6,10 @@ namespace ProjektAsBankkonto.Interfaces.Fachkonzept
 {
     public interface IFachkonzeptKonto
     {
-        bool saveKonto(ref Konto konto);
+        bool addKonto(Konto konto);
+        bool updateKonto(string kontoNr, Konto konto);
         bool deleteKonto(Konto konto);
-        Filiale getOneKonto(string kontoNr);
         Dictionary<string, Konto> getAllKonten(Kunde kunde);
-        Dictionary<string, Konto> getRangeOfKonten(Kunde kunde, int begin, int nr);
+        int getCountKontent(Kunde kunde)
     }
 }
