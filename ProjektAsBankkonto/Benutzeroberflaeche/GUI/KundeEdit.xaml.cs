@@ -52,7 +52,7 @@ namespace ProjektAsBankkonto.Benutzeroberflaeche
             Kunde.Geburtsdatum          =   Convert.ToDateTime(geburtsdatum);
             Kunde.Geschlecht            =   (Geschlechter)this.comboBoxGeschlecht.SelectedValue;
 
-            this.MainWindow.Fachkonzept.saveKunde(ref Kunde);
+            this.MainWindow.Fachkonzept.saveKunde(Kunde);
         }
     }
 }

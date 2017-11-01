@@ -86,7 +86,7 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
         {
             get
             {
-                return this.vorname;
+                return this.nachname;
             }
             set
             {
@@ -94,7 +94,7 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
                 {
                     throw new FormatException();
                 }
-                this.vorname = value;
+                this.nachname = value;
             }
         }
         public DateTime Geburtsdatum 
