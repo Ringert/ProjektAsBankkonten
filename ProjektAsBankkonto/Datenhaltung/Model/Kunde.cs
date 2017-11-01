@@ -10,9 +10,6 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
 {
     public class Kunde
     {
-        //Wird zur Minimierung der Datenhaltungszugriffe genutzt
-        public static Dictionary<int, Kunde> Instances = new Dictionary<int, Kunde>();
-
         private DateTime geburtsdatum;
         private string plz;
         private string strasse;
@@ -102,7 +99,8 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
             get
             {
                 return this.geburtsdatum;        
-            } set
+            }
+            set
             {
 
                 DateTime now    =   DateTime.Now;

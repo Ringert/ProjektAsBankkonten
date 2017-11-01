@@ -9,8 +9,6 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
 {
     public class Konto
     {
-        //Wird zur Minimierung der Datenhaltungszugriffe genutzt
-        public static Dictionary<string, Konto> Instances = new Dictionary<string, Konto>();
         private string kontoNr;
         public Filiale Filiale;
         public Kunde Kunde;
