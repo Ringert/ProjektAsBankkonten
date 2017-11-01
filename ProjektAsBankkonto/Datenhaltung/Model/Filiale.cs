@@ -17,6 +17,7 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
         private string plz;
         private string strasse;
         private string ort;
+        private string name;
 
         public int FilialeNr { get; set; }
         public string Blz
@@ -35,6 +36,21 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
                 }
 
                 this.blz = value;
+            }
+        }
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
+            set
+            {
+                if (value.Length > 255)
+                {
+                    throw new FormatException();
+                }
+                this.name = value;
             }
         }
         public string Strasse

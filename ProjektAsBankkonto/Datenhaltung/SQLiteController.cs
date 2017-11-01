@@ -49,6 +49,7 @@ namespace ProjektAsBankkonto.Datenhaltung
                     "CREATE TABLE filialen("
                     + "   filiale_nr    INT             PRIMARY KEY NOT NULL,"
                     + "   blz           CHARACTER(8)    NOT NULL,"
+                    + "   name          VARCHAR(255)    NOT NULL,"
                     + "   strasse       VARCHAR(100)    NOT NULL,"
                     + "   plz           VARCHAR(10)     NOT NULL,"
                     + "   ort           VARCHAR(100)    NOT NULL,"
@@ -56,6 +57,17 @@ namespace ProjektAsBankkonto.Datenhaltung
                     + ");";
                 command = new SQLiteCommand(sql, this.m_dbConnection);
                 command.ExecuteNonQuery();
+
+                Filiale filiale = new Filiale()
+                {
+                    Blz         =   "50020000",
+                    Name        =   "Sparkasse Humbuk Berlin e.V.",
+                    Strasse     =   "Straßemitlangemnamenundmehr 200",
+                    Plz         =   "13404",
+                    Ort         =   "Berlin",
+                    Land        =   Laender.Deutschland
+                };
+                this.addFiliale(filiale);
             }
             if (!this.checkTableExists("konten"))
             {
@@ -216,13 +228,14 @@ namespace ProjektAsBankkonto.Datenhaltung
         /********************************* Filliale *********************************/
         public bool addFiliale(Filiale filiale)
         {
-            string sql = "INSERT INTO filialen (blz, strasse, plz, ort, land) VALUES (@val1,@val2,@val3,@val4,@val5);";
+            string sql = "INSERT INTO filialen (blz, name, strasse, plz, ort, land) VALUES (@val1,@val2,@val3,@val4,@val5, @val6);";
             SQLiteCommand command = new SQLiteCommand(sql, this.m_dbConnection);
             command.Parameters.Add(new SQLiteParameter("@val1", System.Data.DbType.String) { Value = filiale.Blz });
-            command.Parameters.Add(new SQLiteParameter("@val2", System.Data.DbType.String) { Value = filiale.Strasse });
-            command.Parameters.Add(new SQLiteParameter("@val3", System.Data.DbType.String) { Value = filiale.Plz });
-            command.Parameters.Add(new SQLiteParameter("@val4", System.Data.DbType.String) { Value = filiale.Ort });
-            command.Parameters.Add(new SQLiteParameter("@val5", System.Data.DbType.Int32) { Value = filiale.Land });
+            command.Parameters.Add(new SQLiteParameter("@val2", System.Data.DbType.String) { Value = filiale.Name });
+            command.Parameters.Add(new SQLiteParameter("@val3", System.Data.DbType.String) { Value = filiale.Strasse });
+            command.Parameters.Add(new SQLiteParameter("@val4", System.Data.DbType.String) { Value = filiale.Plz });
+            command.Parameters.Add(new SQLiteParameter("@val5", System.Data.DbType.String) { Value = filiale.Ort });
+            command.Parameters.Add(new SQLiteParameter("@val6", System.Data.DbType.Int32) { Value = filiale.Land });
 
             int rowCount = command.ExecuteNonQuery();
             filiale.FilialeNr = this.getLastInsertedId();
@@ -235,14 +248,15 @@ namespace ProjektAsBankkonto.Datenhaltung
         public bool editFiliale(Filiale filiale)
         {
 
-            string sql = "UPDATE filialen SET blz = @val1, strasse = @val2, plz = @val3, ort = @val4, land = @val5 WHERE filiale_nr = @val6;";
+            string sql = "UPDATE filialen SET blz = @val1, name = @val2, strasse = @val2, plz = @val3, ort = @val4, land = @val5 WHERE filiale_nr = @val6;";
             SQLiteCommand command = new SQLiteCommand(sql, this.m_dbConnection);
             command.Parameters.Add(new SQLiteParameter("@val1", System.Data.DbType.String) { Value = filiale.Blz });
-            command.Parameters.Add(new SQLiteParameter("@val2", System.Data.DbType.String) { Value = filiale.Strasse });
-            command.Parameters.Add(new SQLiteParameter("@val3", System.Data.DbType.String) { Value = filiale.Plz });
-            command.Parameters.Add(new SQLiteParameter("@val4", System.Data.DbType.String) { Value = filiale.Ort });
-            command.Parameters.Add(new SQLiteParameter("@val5", System.Data.DbType.Int32) { Value = filiale.Land });
-            command.Parameters.Add(new SQLiteParameter("@val6", System.Data.DbType.Int32) { Value = filiale.FilialeNr });
+            command.Parameters.Add(new SQLiteParameter("@val2", System.Data.DbType.String) { Value = filiale.Name });
+            command.Parameters.Add(new SQLiteParameter("@val3", System.Data.DbType.String) { Value = filiale.Strasse });
+            command.Parameters.Add(new SQLiteParameter("@val4", System.Data.DbType.String) { Value = filiale.Plz });
+            command.Parameters.Add(new SQLiteParameter("@val5", System.Data.DbType.String) { Value = filiale.Ort });
+            command.Parameters.Add(new SQLiteParameter("@val6", System.Data.DbType.Int32) { Value = filiale.Land });
+            command.Parameters.Add(new SQLiteParameter("@val7", System.Data.DbType.Int32) { Value = filiale.FilialeNr });
 
             int rowCount = command.ExecuteNonQuery();
             if (rowCount > 0)
@@ -268,11 +282,12 @@ namespace ProjektAsBankkonto.Datenhaltung
         {
             return new Filiale()
             {
-                FilialeNr = (int)reader["filiale_nr"],
-                Strasse = (string)reader["strasse"],
-                Plz = (string)reader["plz"],
-                Ort = (string)reader["ort"],
-                Land = (Laender)reader["land"]
+                FilialeNr   = (int)         reader["filiale_nr"],
+                Name        = (string)      reader["name"],
+                Strasse     = (string)      reader["strasse"],
+                Plz         = (string)      reader["plz"],
+                Ort         = (string)      reader["ort"],
+                Land        = (Laender)     reader["land"]
             };
         }
         public Filiale fetchFiliale(int filialeNr)
