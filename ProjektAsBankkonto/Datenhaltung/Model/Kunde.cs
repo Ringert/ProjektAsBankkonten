@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjektAsBankkonto.Datenhaltung.Enums;
 
+
 namespace ProjektAsBankkonto.Datenhaltung.Model
 {
     public class Kunde
@@ -15,6 +16,10 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
         private DateTime geburtsdatum;
         private string plz;
         private string strasse;
+        private string ort;
+        private string vorname;
+        private string nachname;
+        public Dictionary<string, Konto> Konten = new Dictionary<string, Konto>();
 
         public int KundeNr { get; set; }
         public string Strasse
@@ -25,7 +30,10 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
             }
             set
             {
-                //TODO: höchsten 100 Zeichen
+                if (value.Length > 100)
+                {
+                    throw new FormatException();
+                }
                 this.strasse = value;
             }
         }
@@ -35,15 +43,60 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
                 return this.plz;
             }
             set {
-                //TODO: höchsten 10 Zeichen
+                if (value.Length > 10 && value.Length < 3)
+                {
+                    throw new FormatException();
+                }
                 this.plz = value;
             }
         }
-        public string Ort { get; set; }
+        public string Ort
+        {
+            get
+            {
+                return this.ort;
+            }
+            set
+            {
+                if (value.Length > 100)
+                {
+                    throw new FormatException();
+                }
+                this.ort = value;
+            }
+        }
         public Laender Land { get; set; }
         public Geschlechter Geschlecht { get; set; }
-        public string Vorname { get; set; }
-        public string Nachname { get; set; }
+        public string Vorname
+        {
+            get
+            {
+                return this.vorname;
+            }
+            set
+            {
+                if (value.Length > 255)
+                {
+                    throw new FormatException();
+                }
+                this.vorname = value;
+            }
+        }
+        public string Nachname
+        {
+            get
+            {
+                return this.vorname;
+            }
+            set
+            {
+                if (value.Length > 255)
+                {
+                    throw new FormatException();
+                }
+                this.vorname = value;
+            }
+        }
         public DateTime Geburtsdatum 
         { 
             get

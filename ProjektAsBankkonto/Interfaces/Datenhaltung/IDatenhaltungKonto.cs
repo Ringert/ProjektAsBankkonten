@@ -7,13 +7,11 @@ namespace ProjektAsBankkonto.Interfaces.Datenhaltung
     public interface IDatenhaltungKonto
     {
        
-        bool addKonto(ref Konto konto);
-        bool editKonto(Konto konto);
+        bool addKonto(Konto konto);
+        bool editKonto(string kontoNr, Konto konto);
         bool deleteKonto(Konto konto);
-        Konto fetchKonto(string kontoNr);
-        Dictionary<string, Konto> fetchAllKonten();
-        Dictionary<string, Konto> fetchRangeOfKonten(int nr, int offset);
+        Dictionary<string, Konto> fetchAllKonten(ref Kunde kunde);
         bool checkKontoNrExists(string kontoNr);
-        int getCountKonten();
+        int getCountKonten(Kunde kunde);
     }
 }

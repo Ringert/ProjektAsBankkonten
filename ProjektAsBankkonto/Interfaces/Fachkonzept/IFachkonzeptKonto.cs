@@ -9,7 +9,7 @@ namespace ProjektAsBankkonto.Interfaces.Fachkonzept
         bool saveKonto(ref Konto konto);
         bool deleteKonto(Konto konto);
         Filiale getOneKonto(string kontoNr);
-        Dictionary<string, Konto> getAllKonten();
-        Dictionary<string, Konto> getRangeOfKonten(int begin, int nr);
+        Dictionary<string, Konto> getAllKonten(Kunde kunde);
+        Dictionary<string, Konto> getRangeOfKonten(Kunde kunde, int begin, int nr);
     }
 }

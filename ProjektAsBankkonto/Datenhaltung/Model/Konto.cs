@@ -12,6 +12,8 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
         //Wird zur Minimierung der Datenhaltungszugriffe genutzt
         public static Dictionary<string, Konto> Instances = new Dictionary<string, Konto>();
         private string kontoNr;
+        public Filiale Filiale;
+        public Kunde Kunde;
 
         public string KontoNr 
         {
@@ -21,9 +23,9 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
             } 
             set
             {
-                Regex rgx = new Regex(@"[^\d]", RegexOptions.IgnoreCase);
+                Regex rgx = new Regex(@"^[\d]{8}$", RegexOptions.IgnoreCase);
                 MatchCollection matches = rgx.Matches(value);
-                if (value.Length != 8 || matches.Count > 0)
+                if (matches.Count == 1)
                 {
                     throw new FormatException();
                 }
