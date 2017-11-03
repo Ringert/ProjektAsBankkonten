@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  
         xmlns:local="clr-namespace:ProjektAsBankkonto.Benutzeroberflaeche"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Konto anpassen" Height="300" Width="275"
+        Title="Konto anpassen" Height="375" Width="275"
         mc:Ignorable="d"
         
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -96,7 +96,9 @@
                     <TextBlock x:Name="labelKontonummer" Text="Kontonummer:" Padding="5"></TextBlock>
                 </StackPanel>
             </Grid>
-            <TextBox x:Name="textBoxKontonummer" Text="DE21321561465" ></TextBox>
+            <TextBox x:Name="textBoxKontonummer" Text="DE21321561465" Margin="0 0 0 20"></TextBox>
+
+            <Button x:Name="buttonSpeichern" Margin="5">Speichern</Button>
         </StackPanel>
     </Border>
 </Window>    

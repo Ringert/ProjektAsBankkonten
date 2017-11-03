@@ -43,8 +43,8 @@ namespace ProjektAsBankkonto.Benutzeroberflaeche
             Kunde Kunde                 =   new Kunde();
             Kunde.Vorname               =   this.textBoxVorname.Text;
             Kunde.Nachname              =   this.textBoxNachname.Text;
-            Kunde.Strasse               =   this.textBoxStrasse.Text;
-            Kunde.Plz                   =   this.textBoxPlz.Text;
+            Kunde.Strasse               =   this.textBoxStraße.Text;
+            Kunde.Plz                   =   this.textBoxPLZ.Text;
             Kunde.Ort                   =   this.textBoxOrt.Text;
             DateTime? geburtsdatum      =   this.datepickerGeburtsdatum.SelectedDate;
             if (geburtsdatum == null)
