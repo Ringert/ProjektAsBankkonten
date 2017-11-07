@@ -29,13 +29,13 @@ namespace ProjektAsBankkonto.Benutzeroberflaeche
             InitializeComponent();
         }
 
-        private void buttonKundeAdd_Click(object sender, RoutedEventArgs e)
+        private void KundeAddButton_Click(object sender, RoutedEventArgs e)
         {
             Window kundeEdit = new KundeEdit(this);
             kundeEdit.Show();
         }
 
-        private void buttonKontoAdd_Click(object sender, RoutedEventArgs e)
+        private void KontoAddButton_Click(object sender, RoutedEventArgs e)
         {
             Window kontoEdit = new KontoEdit(this);
             kontoEdit.Show();

@@ -5,41 +5,134 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjektAsBankkonto.Benutzeroberflaeche"
         mc:Ignorable="d"
-        Title="Sparkasse Humbuk e.V." Height="400" Width="625">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="112" Margin="10,48,0,0" VerticalAlignment="Top" Width="276">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <Label x:Name="labelKunde" Content="Kunden" HorizontalAlignment="Left" Height="33" Margin="10,10,0,0" VerticalAlignment="Top" Width="276"/>
-        <Button x:Name="buttonKundeAdd" Content="Kunde anlegen" HorizontalAlignment="Left" Height="25" Margin="10,165,0,0" VerticalAlignment="Top" Width="92" Click="buttonKundeAdd_Click"/>
-        <ListView x:Name="listView_Copy" HorizontalAlignment="Left" Height="112" Margin="10,48,0,0" VerticalAlignment="Top" Width="276" Grid.Column="1">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <Label x:Name="labelKonto" Content="Konten von:" HorizontalAlignment="Left" Height="33" Margin="10,10,0,0" VerticalAlignment="Top" Width="73" Grid.Column="1"/>
-        <Button x:Name="buttonKontoAdd" Content="Konto anlegen" HorizontalAlignment="Left" Height="25" Margin="10,165,0,0" VerticalAlignment="Top" Width="92" Grid.Column="1" Click="buttonKontoAdd_Click"/>
-        <Label x:Name="labelKonto_Copy" Content="Hanz Wurst" HorizontalAlignment="Left" Height="33" Margin="88,10,0,0" VerticalAlignment="Top" Width="172" Grid.Column="1"/>
-        <Button x:Name="buttonKundeDelete" Content="Kunde löschen" HorizontalAlignment="Left" Height="25" Margin="107,165,0,0" VerticalAlignment="Top" Width="92"/>
-        <Button x:Name="buttonKontoDelete" Content="Konto löschen" HorizontalAlignment="Left" Height="25" Margin="107,165,0,0" VerticalAlignment="Top" Width="92" Grid.Column="1"/>
-        <Label x:Name="labelKontonummer" Content="Kontonummer:" HorizontalAlignment="Left" Height="33" Margin="10,195,0,0" VerticalAlignment="Top" Width="92" Grid.Column="1"/>
-        <Label x:Name="labelKontoummerNr" Content="826472467462764" HorizontalAlignment="Left" Height="33" Margin="107,195,0,0" VerticalAlignment="Top" Width="179" Grid.Column="1"/>
-        <Label x:Name="labelFiliale" Content="Filiale:" HorizontalAlignment="Left" Height="33" Margin="10,233,0,0" VerticalAlignment="Top" Width="92" Grid.Column="1"/>
-        <Label x:Name="labelFilialeDaten" Content="Sparkasse Humbuk Berlin e.V.&#xD;&#xA;Straßemitlangemnamenundmehr 200&#xD;&#xA;13404, Berlin&#xD;&#xA;Deutschland" HorizontalAlignment="Left" Height="93" Margin="10,266,0,0" VerticalAlignment="Top" Width="276" Grid.Column="1"/>
-        <Label x:Name="labelKundePersoData" Content="Name:&#xD;&#xA;Geburtsdatum:" HorizontalAlignment="Left" Height="44" Margin="10,233,0,0" VerticalAlignment="Top" Width="92"/>
-        <Label x:Name="labelKundePersoDataVal" Content="Herr Hanz Wurst&#xD;&#xA;11.11.1993&#xD;&#xA;" HorizontalAlignment="Left" Height="44" Margin="107,233,0,0" VerticalAlignment="Top" Width="179"/>
-        <Label x:Name="labelKundeAdresse" Content="Adresse:" HorizontalAlignment="Left" Height="77" Margin="10,282,0,0" VerticalAlignment="Top" Width="92"/>
-        <Label x:Name="labelKundeAdresseVal" Content="Ich-wohne-hier Straße 100&#xD;&#xA;13404, Berlin&#xA;Deutschland" HorizontalAlignment="Left" Height="77" Margin="107,282,0,0" VerticalAlignment="Top" Width="179"/>
+        Title="Sparkasse Humbuk e.V." Height="375" Width="625"
 
-    </Grid>
-</Window>
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="12"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
+    <Border  Margin="5">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel Grid.Column="0" Margin="0 0 10 0">
+                <TextBlock x:Name="kundeCaption" Text="Kunden" Margin="5"></TextBlock>
+
+                <Border BorderBrush="Black" BorderThickness="1" Margin="0 0 0 5">
+                    <ListView x:Name="listView" Height="125" >
+                        <ListView.View>
+                            <GridView>
+
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Border>
+                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0" x:Name="KundeAddButton" Content="Kunde anlegen" Margin="0 0 10 0" Click="ButtonKundeAdd_Click_1"></Button>
+
+                    <Button Grid.Column="1" x:Name="KundeDelButton" Content="Kunde löschen" Margin="10 0 0 0"></Button>
+                </Grid>
+
+                <Grid Margin="5 20 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Margin="0 0 10 0">
+                        <TextBlock x:Name="custCaption" Text="Name:"></TextBlock>
+
+                        <TextBlock x:Name="birthCaption" Text="Geburtsdatum:" Margin="0 5 0 0"></TextBlock>
+
+                        <TextBlock x:Name="adrCaption" Text="Adresse:" Margin="0 15 0 0"></TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock x:Name="custValue" Text="Herr Hans Wurst"></TextBlock>
+
+                        <TextBlock x:Name="birthValue" Text="11.11.1993" Margin="0 5 0 0"></TextBlock>
+
+                        <TextBlock x:Name="streetValue" Text="Ich-wohne-hier Straße 100" Margin="0 15 0 0"></TextBlock>
+
+                        <TextBlock x:Name="cityValue" Text="13404, Berlin"></TextBlock>
+
+                        <TextBlock x:Name="landValue" Text="Deutschland"></TextBlock>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+            
+            <StackPanel Grid.Column="1" Margin="10 0 0 0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Column="0" x:Name="kontoCaption" Text="Konten von:" Margin="5"></TextBlock>
+
+                    <TextBlock Grid.Column="1" x:Name="kontoValue" Text="Hans Wurst" Margin="5"></TextBlock>
+                </Grid>
+                
+                <Border BorderBrush="Black" BorderThickness="1" Margin="0 0 0 5">
+                    <ListView x:Name="listView_copy" Height="125" >
+                        <ListView.View>
+                            <GridView>
+
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Border>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0" x:Name="KontoAddButton" Content="Konto anlegen" Margin="0 0 10 0"></Button>
+
+                    <Button Grid.Column="1" x:Name="KontoDelButton" Content="Konto löschen" Margin="10 0 0 0"></Button>
+                </Grid>
+
+                <Grid Margin="5 15 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <TextBlock x:Name="kontonummerCaption" Text="Kontonummer:"></TextBlock>
+
+                        <TextBlock x:Name="filialeCaption" Text="Filiale:" Margin="0 5 0 0"></TextBlock>
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Column="1" Margin="10 0 0 0">
+                        <TextBlock x:Name="kontonummerValue" Text="826472467462764"></TextBlock>
+                    </StackPanel>
+                </Grid>
+
+                <StackPanel Margin="5 19 0 0">
+                    <TextBlock x:Name="filialNameValue" Text="Sparkasse Humbuk Berlin e.V"></TextBlock>
+                    
+                    <TextBlock x:Name="filialAdrValue" Text="Straßemitlangemnamenundmehr 200"></TextBlock>
+                    
+                    <TextBlock x:Name="filialeCityValue" Text="13404, Berlin"></TextBlock>
+                    
+                    <TextBlock x:Name="filiallandValue" Text="Deutschland"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>    
+
