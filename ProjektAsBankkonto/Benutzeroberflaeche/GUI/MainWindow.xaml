@@ -38,7 +38,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
-                    <Button Grid.Column="0" x:Name="KundeAddButton" Content="Kunde anlegen" Margin="0 0 10 0" Click="ButtonKundeAdd_Click_1"></Button>
+                    <Button Grid.Column="0" x:Name="KundeAddButton" Content="Kunde anlegen" Margin="0 0 10 0" Click="KundeAddButton_Click"/>
 
                     <Button Grid.Column="1" x:Name="KundeDelButton" Content="Kunde löschen" Margin="10 0 0 0"></Button>
                 </Grid>
@@ -100,7 +100,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
-                    <Button Grid.Column="0" x:Name="KontoAddButton" Content="Konto anlegen" Margin="0 0 10 0"></Button>
+                    <Button Grid.Column="0" x:Name="KontoAddButton" Content="Konto anlegen" Margin="0 0 10 0" Click="KontoAddButton_Click"></Button>
 
                     <Button Grid.Column="1" x:Name="KontoDelButton" Content="Konto löschen" Margin="10 0 0 0"></Button>
                 </Grid>

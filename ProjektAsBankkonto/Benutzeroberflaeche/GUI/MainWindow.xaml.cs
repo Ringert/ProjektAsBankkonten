@@ -24,6 +24,8 @@ namespace ProjektAsBankkonto.Benutzeroberflaeche
     {
         public IFachkonzept Fachkonzept { get; set; }
         public MainWindow(IFachkonzept fachkonzept)
+
+        
         {
             this.Fachkonzept = fachkonzept;
             InitializeComponent();
@@ -35,10 +37,20 @@ namespace ProjektAsBankkonto.Benutzeroberflaeche
             kundeEdit.Show();
         }
 
+        private void KundeDelButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
         private void KontoAddButton_Click(object sender, RoutedEventArgs e)
         {
             Window kontoEdit = new KontoEdit(this);
             kontoEdit.Show();
+        }
+
+        private void KontoDelButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
