@@ -29,7 +29,7 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
             {
                 if (value.Length > 100)
                 {
-                    throw new FormatException();
+                    throw new FormatException("Der Straßenname ist zu lang: max. 100 Zeichen");
                 }
                 this.strasse = value;
             }
@@ -42,7 +42,7 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
             set {
                 if (value.Length > 10 && value.Length < 3)
                 {
-                    throw new FormatException();
+                    throw new FormatException("Die Postleitzahl entspricht nicht den Vorgaben: zwischen 3 und 10 Zeichen");
                 }
                 this.plz = value;
             }
@@ -57,7 +57,7 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
             {
                 if (value.Length > 100)
                 {
-                    throw new FormatException();
+                    throw new FormatException("Der Ortsname ist zu lang: max 100 Zeichen");
                 }
                 this.ort = value;
             }
@@ -74,7 +74,7 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
             {
                 if (value.Length > 255)
                 {
-                    throw new FormatException();
+                    throw new FormatException("Der Vorname ist zu lang: max. 255 Zeichen");
                 }
                 this.vorname = value;
             }
@@ -89,7 +89,7 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
             {
                 if (value.Length > 255)
                 {
-                    throw new FormatException();
+                    throw new FormatException("Der Nachname ist zu lang: max. 255 Zeichen");
                 }
                 this.nachname = value;
             }
@@ -109,7 +109,7 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
                 if (now.Month < value.Month || (now.Month == value.Month && now.Day < value.Day))
                     age--;
                 if(age < 18)
-                    throw new FormatException();
+                    throw new FormatException("Ein Kontoinhaber muss mind. 18 Jahre alt sein");
             
                 this.geburtsdatum = value;
             } 

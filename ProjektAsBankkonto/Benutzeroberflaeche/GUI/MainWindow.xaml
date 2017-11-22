@@ -23,10 +23,11 @@
                 <TextBlock x:Name="kundeCaption" Text="Kunden" Margin="5"></TextBlock>
 
                 <Border BorderBrush="Black" BorderThickness="1" Margin="0 0 0 5">
-                    <ListView x:Name="listView" Height="125" >
+                    <ListView x:Name="listViewKunden" Height="125" MouseDoubleClick="listViewKunde_MouseDoubleClick" >
                         <ListView.View>
                             <GridView>
-
+                                <GridViewColumn Header="Vorname" DisplayMemberBinding="{Binding Vorname}"/>
+                                <GridViewColumn Header="Nachname" DisplayMemberBinding="{Binding Nachname}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -85,7 +86,7 @@
                 </Grid>
                 
                 <Border BorderBrush="Black" BorderThickness="1" Margin="0 0 0 5">
-                    <ListView x:Name="listView_copy" Height="125" >
+                    <ListView x:Name="listViewKonten" Height="125" >
                         <ListView.View>
                             <GridView>
 

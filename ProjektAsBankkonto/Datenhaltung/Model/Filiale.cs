@@ -32,7 +32,7 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
                 MatchCollection matches = rgx.Matches(value);
                 if (matches.Count != 1)
                 {
-                    throw new FormatException();
+                    throw new FormatException("Die Bankleitzahl entspricht nicht den Vorgaben: 8 Zahlen");
                 }
 
                 this.blz = value;
@@ -48,7 +48,7 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
             {
                 if (value.Length > 255)
                 {
-                    throw new FormatException();
+                    throw new FormatException("Der Filialenname ist zu lang: max. 255 Zeichen");
                 }
                 this.name = value;
             }
@@ -63,7 +63,7 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
             {
                 if (value.Length > 100)
                 {
-                    throw new FormatException();
+                    throw new FormatException("Die Straße ist zu lang: max. 100 Zeichen");
                 }
                 this.strasse = value;
             }
@@ -79,7 +79,7 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
             {
                 if (value.Length > 10 && value.Length < 3)
                 {
-                    throw new FormatException();
+                    throw new FormatException("Die Postleitzahl ist falsch: zwischen 3 und 10 Zeichen");
                 }
                 this.plz = value;
             }
@@ -94,7 +94,7 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
             {
                 if (value.Length > 100)
                 {
-                    throw new FormatException();
+                    throw new FormatException("Der Ortsname ist zu lang: max. 100 Zeichen");
                 }
                 this.ort = value;
             }

@@ -25,7 +25,7 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
                 MatchCollection matches = rgx.Matches(value);
                 if (matches.Count == 1)
                 {
-                    throw new FormatException();
+                    throw new FormatException("Die Kontonummer entspricht nicht den Vorgaben: 8 Zahlen");
                 }
 
                 this.kontoNr = value;

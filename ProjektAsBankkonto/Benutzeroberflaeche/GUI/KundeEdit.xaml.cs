@@ -36,6 +36,14 @@ namespace ProjektAsBankkonto.Benutzeroberflaeche
         {
             this.Kunde = kunde;
             init(mainWindow);
+            this.textBoxVorname.Text = this.Kunde.Vorname;
+            this.textBoxNachname.Text = this.Kunde.Nachname;
+            this.textBoxStraße.Text = this.Kunde.Strasse;
+            this.textBoxPLZ.Text = this.Kunde.Plz;
+            this.textBoxOrt.Text = this.Kunde.Ort;
+            this.datepickerGeburtsdatum.SelectedDate = this.Kunde.Geburtsdatum;
+            this.comboBoxGeschlecht.SelectedValue = this.Kunde.Geschlecht;
+            this.comboBoxLand.SelectedValue = this.Kunde.Land;
         }
 
         private void init(MainWindow mainwindow)
@@ -48,20 +56,26 @@ namespace ProjektAsBankkonto.Benutzeroberflaeche
 
         private void buttonKundeSave_Click(object sender, RoutedEventArgs e)
         {
-            Kunde Kunde = new Kunde();
-            Kunde.Vorname = this.textBoxVorname.Text;
-            Kunde.Nachname = this.textBoxNachname.Text;
-            Kunde.Strasse = this.textBoxStraße.Text;
-            Kunde.Plz = this.textBoxPLZ.Text;
-            Kunde.Ort = this.textBoxOrt.Text;
-            DateTime? geburtsdatum = this.datepickerGeburtsdatum.SelectedDate;
-            if (geburtsdatum == null)
-                throw new FormatException();
-            Kunde.Geburtsdatum = Convert.ToDateTime(geburtsdatum);
-            Kunde.Geschlecht = (Geschlechter)this.comboBoxGeschlecht.SelectedValue;
+            try
+            {
+                this.Kunde.Vorname = this.textBoxVorname.Text;
+                this.Kunde.Nachname = this.textBoxNachname.Text;
+                this.Kunde.Strasse = this.textBoxStraße.Text;
+                this.Kunde.Plz = this.textBoxPLZ.Text;
+                this.Kunde.Ort = this.textBoxOrt.Text;
+                DateTime? geburtsdatum = this.datepickerGeburtsdatum.SelectedDate;
+                if (geburtsdatum == null)
+                    throw new FormatException("Sie haben kein Datum eingegeben");
+                this.Kunde.Geburtsdatum = Convert.ToDateTime(geburtsdatum);
+                this.Kunde.Geschlecht = (Geschlechter)this.comboBoxGeschlecht.SelectedValue;
+                this.Kunde.Land = (Laender)this.comboBoxLand.SelectedValue;
 
-            this.MainWindow.Fachkonzept.saveKunde(Kunde);
-            this.Close();
+                this.MainWindow.Fachkonzept.saveKunde(this.Kunde);
+                this.Close();
+            } catch (FormatException ex) {
+                MessageBox.Show("Ein fehler beim speichern ist aufgetreten!\nBitte überprüfen Sie ihre eingaben.\nFehler:\n " + ex.Message);
+            }
+            
         }
     }
 }

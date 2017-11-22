@@ -149,19 +149,18 @@ namespace ProjektAsBankkonto.Datenhaltung
         }
         private Kunde __createKundeFromReader(SQLiteDataReader reader)
         {
+            string geschlecht = (string)reader["geschlecht"];
             return new Kunde()
             {
-                KundeNr         = (int)             reader["kunde_nr"],
-                Vorname         = (string)          reader["vorname"],
-                Nachname        = (string)          reader["nachname"],
-                Geburtsdatum    = DateTime.Parse(
-                                  (string)          reader["geb_dat"]
-                                ),
-                Geschlecht      = (Geschlechter)    reader["geschlecht"],
-                Strasse         = (string)          reader["strasse"],
-                Plz             = (string)          reader["plz"],
-                Ort             = (string)          reader["ort"],
-                Land            = (Laender)         reader["land"]
+                KundeNr         = (int)(long)               reader["kunde_nr"],
+                Vorname         = (string)                  reader["vorname"],
+                Nachname        = (string)                  reader["nachname"],
+                Geburtsdatum    = (DateTime)                reader["geb_dat"],
+                Geschlecht      = (Geschlechter)            geschlecht[0],
+                Strasse         = (string)                  reader["strasse"],
+                Plz             = (string)                  reader["plz"],
+                Ort             = (string)                  reader["ort"],
+                Land            = (Laender)(int)            reader["land"]
             };
         }
 
