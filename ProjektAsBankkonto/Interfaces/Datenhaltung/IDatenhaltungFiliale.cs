@@ -11,7 +11,6 @@ namespace ProjektAsBankkonto.Interfaces.Datenhaltung
         bool deleteFiliale(Filiale filiale);
         Filiale fetchFiliale(int filialeNr);
         Dictionary<int, Filiale> fetchAllFilialen();
-        
         Dictionary<int, Filiale> fetchRangeOfFilialen(int nr, int offset);
         int getCountFilialen();
     }

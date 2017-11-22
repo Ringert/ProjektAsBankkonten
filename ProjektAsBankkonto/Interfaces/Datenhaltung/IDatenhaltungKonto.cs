@@ -6,7 +6,6 @@ namespace ProjektAsBankkonto.Interfaces.Datenhaltung
 {
     public interface IDatenhaltungKonto
     {
-       
         bool addKonto(Konto konto);
         bool editKonto(string kontoNr, Konto konto);
         bool deleteKonto(Konto konto);
