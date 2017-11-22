@@ -57,8 +57,8 @@
                     <ComboBox x:Name="comboBoxLand" Text="Land wählen"></ComboBox>
                 </StackPanel>
             </Grid>
-            
-            <Button Margin="5 20 5 5" x:Name="buttonKundeSave" HorizontalAlignment="Right" Content="Speichern"></Button>
+
+            <Button Margin="5 20 5 5" x:Name="buttonKundeSave" HorizontalAlignment="Right" Content="Speichern" Click="buttonKundeSave_Click"></Button>
         </StackPanel>
     </Border>
 </Window>    

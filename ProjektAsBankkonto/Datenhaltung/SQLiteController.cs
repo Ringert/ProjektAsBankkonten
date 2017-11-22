@@ -18,7 +18,7 @@ namespace ProjektAsBankkonto.Datenhaltung
 
         public SQLiteController()
         {
-            this.m_dbConnection = new SQLiteConnection("Data Source=ProjektAsBankkonten.sqlite;Version=3;");
+            this.m_dbConnection = new SQLiteConnection("Data Source=ProjektAsBankkonten.sqlite2;Version=3;");
             this.m_dbConnection.Open();
             this.checkTables();
         }
@@ -30,7 +30,7 @@ namespace ProjektAsBankkonto.Datenhaltung
             if (!this.checkTableExists("kunden")) {
                 string sql = 
                     "CREATE TABLE kunden(" 
-                    +   "   kunde_nr    INT             PRIMARY KEY NOT NULL," 
+                    +   "   kunde_nr    INTEGER         PRIMARY KEY AUTOINCREMENT NOT NULL,"
                     +   "   strasse     VARCHAR(100)    NOT NULL," 
                     +   "   plz         VARCHAR(10)     NOT NULL," 
                     +   "   ort         VARCHAR(100)    NOT NULL," 
@@ -47,13 +47,13 @@ namespace ProjektAsBankkonto.Datenhaltung
             {
                 string sql =
                     "CREATE TABLE filialen("
-                    + "   filiale_nr    INT             PRIMARY KEY NOT NULL,"
+                    + "   filiale_nr    INTEGER         PRIMARY KEY AUTOINCREMENT NOT NULL,"
                     + "   blz           CHARACTER(8)    NOT NULL,"
                     + "   name          VARCHAR(255)    NOT NULL,"
                     + "   strasse       VARCHAR(100)    NOT NULL,"
                     + "   plz           VARCHAR(10)     NOT NULL,"
                     + "   ort           VARCHAR(100)    NOT NULL,"
-                    + "   land          INT             NOT NULL,"
+                    + "   land          INT             NOT NULL"
                     + ");";
                 command = new SQLiteCommand(sql, this.m_dbConnection);
                 command.ExecuteNonQuery();
@@ -77,7 +77,7 @@ namespace ProjektAsBankkonto.Datenhaltung
                     + "   filiale_nr    INT             NOT NULL,"
                     + "   kunde_nr      INT             NOT NULL,"
                     + "   FOREIGN KEY   (filiale_nr)    REFERENCES filialen(filiale_nr),"
-                    + "   FOREIGN KEY   (kunde_nr)      REFERENCES kunden(kunde_nr),"
+                    + "   FOREIGN KEY   (kunde_nr)      REFERENCES kunden(kunde_nr)"
                     + ");"; 
                 command = new SQLiteCommand(sql, this.m_dbConnection);
                 command.ExecuteNonQuery();
@@ -86,12 +86,13 @@ namespace ProjektAsBankkonto.Datenhaltung
         }
         private bool checkTableExists(string tableName)
         {
-            string sql = "SELECT count(*) FROM sqlite_master WHERE name = @val1;";
+            string sql = "SELECT name FROM sqlite_master WHERE name = @val1;";
             SQLiteCommand command = new SQLiteCommand(sql, this.m_dbConnection);
             command.Parameters.Add(new SQLiteParameter("@val1", System.Data.DbType.String) { Value = tableName });
 
             SQLiteDataReader reader = command.ExecuteReader();
-            return (reader.FieldCount == 1);
+            reader.Read();
+            return reader.HasRows;
         }
 
         private int getLastInsertedId()
@@ -99,7 +100,7 @@ namespace ProjektAsBankkonto.Datenhaltung
             string sql = "SELECT last_insert_rowid();";
             SQLiteCommand command = new SQLiteCommand(sql, this.m_dbConnection);
             object obj = command.ExecuteScalar();
-            int id = (int)obj;
+            int id = (int)(long)obj;
             return id;
         }
         /********************************* Kunde *********************************/
@@ -110,11 +111,11 @@ namespace ProjektAsBankkonto.Datenhaltung
             command.Parameters.Add(new SQLiteParameter("@val1", System.Data.DbType.String) { Value = kunde.Vorname });
             command.Parameters.Add(new SQLiteParameter("@val2", System.Data.DbType.String) { Value = kunde.Nachname });
             command.Parameters.Add(new SQLiteParameter("@val3", System.Data.DbType.DateTime) { Value = kunde.Geburtsdatum });
-            command.Parameters.Add(new SQLiteParameter("@val4", System.Data.DbType.String) { Value = kunde.Geschlecht });
+            command.Parameters.Add(new SQLiteParameter("@val4", System.Data.DbType.String) { Value = (char)kunde.Geschlecht });
             command.Parameters.Add(new SQLiteParameter("@val5", System.Data.DbType.String) { Value = kunde.Strasse });
             command.Parameters.Add(new SQLiteParameter("@val6", System.Data.DbType.String) { Value = kunde.Plz });
-            command.Parameters.Add(new SQLiteParameter("@val7", System.Data.DbType.Int32) { Value = kunde.Ort });
-            command.Parameters.Add(new SQLiteParameter("@val8", System.Data.DbType.String) { Value = kunde.Land });
+            command.Parameters.Add(new SQLiteParameter("@val7", System.Data.DbType.String) { Value = kunde.Ort });
+            command.Parameters.Add(new SQLiteParameter("@val8", System.Data.DbType.Int32) { Value = (int)kunde.Land });
 
             int rowCount = command.ExecuteNonQuery();
             kunde.KundeNr = this.getLastInsertedId();
@@ -127,11 +128,11 @@ namespace ProjektAsBankkonto.Datenhaltung
             command.Parameters.Add(new SQLiteParameter("@val1", System.Data.DbType.String) { Value = kunde.Vorname });
             command.Parameters.Add(new SQLiteParameter("@val2", System.Data.DbType.String) { Value = kunde.Nachname });
             command.Parameters.Add(new SQLiteParameter("@val3", System.Data.DbType.DateTime) { Value = kunde.Geburtsdatum });
-            command.Parameters.Add(new SQLiteParameter("@val4", System.Data.DbType.String) { Value = kunde.Geschlecht });
+            command.Parameters.Add(new SQLiteParameter("@val4", System.Data.DbType.String) { Value = (char)kunde.Geschlecht });
             command.Parameters.Add(new SQLiteParameter("@val5", System.Data.DbType.String) { Value = kunde.Strasse });
             command.Parameters.Add(new SQLiteParameter("@val6", System.Data.DbType.String) { Value = kunde.Plz });
-            command.Parameters.Add(new SQLiteParameter("@val7", System.Data.DbType.Int32) { Value = kunde.Ort });
-            command.Parameters.Add(new SQLiteParameter("@val8", System.Data.DbType.String) { Value = kunde.Land });
+            command.Parameters.Add(new SQLiteParameter("@val7", System.Data.DbType.String) { Value = kunde.Ort });
+            command.Parameters.Add(new SQLiteParameter("@val8", System.Data.DbType.Int32) { Value = (int)kunde.Land });
             command.Parameters.Add(new SQLiteParameter("@val9", System.Data.DbType.Int32) { Value = kunde.KundeNr });
 
             int rowCount = command.ExecuteNonQuery();

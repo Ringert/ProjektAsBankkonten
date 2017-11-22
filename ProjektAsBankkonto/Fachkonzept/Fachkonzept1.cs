@@ -21,8 +21,8 @@ namespace ProjektAsBankkonto.Fachkonzept
         /********************************* Kunde *********************************/
         public bool saveKunde(Kunde kunde)
         {
-            int? kundeNr = kunde.KundeNr;
-            if(kundeNr == null) {
+            int kundeNr = kunde.KundeNr;
+            if(kundeNr == 0) {
                 return this.Datenhaltung.addKunde(kunde);
             } else {
                 return this.Datenhaltung.editKunde(kunde);
