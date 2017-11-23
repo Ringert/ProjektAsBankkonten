@@ -42,8 +42,8 @@ namespace ProjektAsBankkonto.Benutzeroberflaeche
 
         public KundeEdit(MainWindow mainWindow, Kunde kunde)
         {
-            this.Kunde = kunde;
             init(mainWindow);
+            this.Kunde = kunde;
             this.textBoxVorname.Text = this.Kunde.Vorname;
             this.textBoxNachname.Text = this.Kunde.Nachname;
             this.textBoxStraße.Text = this.Kunde.Strasse;
@@ -81,7 +81,7 @@ namespace ProjektAsBankkonto.Benutzeroberflaeche
                 this.MainWindow.Fachkonzept.saveKunde(this.Kunde);
                 this.Close();
             } catch (FormatException ex) {
-                MessageBox.Show("Ein fehler beim speichern ist aufgetreten!\nBitte überprüfen Sie ihre eingaben.\nFehler:\n " + ex.Message);
+                MessageBox.Show("Ein Fehler beim speichern ist aufgetreten!\nBitte überprüfen Sie ihre eingaben.\nFehler:\n " + ex.Message);
             }
             
         }

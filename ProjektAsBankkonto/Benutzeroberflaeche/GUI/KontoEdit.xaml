@@ -31,7 +31,7 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="2">
-                    <TextBox x:Name="labelInhaberName"></TextBox>
+                    <TextBlock x:Name="labelInhaberName"></TextBlock>
                 </StackPanel>
             </Grid>
             <!--Bankinfozeile-->
@@ -54,10 +54,10 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="3">
-                    <TextBlock x:Name="labelBlzNummer" Text="200500000" Padding="5"></TextBlock>
+                    <TextBlock x:Name="labelBlzNummer" Padding="5"></TextBlock>
                 </StackPanel>
             </Grid>
-            <ComboBox x:Name="comboBoxFiliale" Text="Filiale:" Padding="5"></ComboBox>
+            <ComboBox x:Name="comboBoxFiliale" Padding="5" SelectionChanged="comboBoxFiliale_SelectionChanged" SelectedValuePath="Key" DisplayMemberPath="Value.Name"></ComboBox>
             <!--Adressinfozeile-->
             <Grid Margin="0 16 0 10">
                 <materialDesign:Card  Grid.Row="1" Grid.ColumnSpan="4" >
@@ -75,11 +75,11 @@
                             </StackPanel>
                         </Grid>
 
-                        <TextBlock x:Name="labelStraße" Text="Straßemitlangemnamenundmehr 200" Padding="5"></TextBlock>
+                        <TextBlock x:Name="labelStraße" Padding="5"></TextBlock>
 
-                        <TextBlock x:Name="labelOrt" Text="13404 Berlin" Padding="5"></TextBlock>
+                        <TextBlock x:Name="labelOrt" Padding="5"></TextBlock>
 
-                        <TextBlock x:Name="labelLand" Text="Deutschland" Padding="5"></TextBlock>
+                        <TextBlock x:Name="labelLand" Padding="5"></TextBlock>
                     </StackPanel>
                 </materialDesign:Card>
             </Grid>
@@ -96,9 +96,9 @@
                     <TextBlock x:Name="labelKontonummer" Text="Kontonummer:" Padding="5"></TextBlock>
                 </StackPanel>
             </Grid>
-            <TextBox x:Name="textBoxKontonummer" Text="DE21321561465" Margin="0 0 0 20"></TextBox>
+            <TextBox x:Name="textBoxKontonummer" Margin="0 0 0 20"></TextBox>
 
-            <Button x:Name="buttonSpeichern" Margin="5">Speichern</Button>
+            <Button x:Name="buttonSpeichern" Margin="5" Click="buttonSpeichern_Click">Speichern</Button>
         </StackPanel>
     </Border>
 </Window>    

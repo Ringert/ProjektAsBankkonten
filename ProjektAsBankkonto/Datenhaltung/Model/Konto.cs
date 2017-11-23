@@ -23,7 +23,7 @@ namespace ProjektAsBankkonto.Datenhaltung.Model
             {
                 Regex rgx = new Regex(@"^[\d]{8}$", RegexOptions.IgnoreCase);
                 MatchCollection matches = rgx.Matches(value);
-                if (matches.Count == 1)
+                if (matches.Count != 1)
                 {
                     throw new FormatException("Die Kontonummer entspricht nicht den Vorgaben: 8 Zahlen");
                 }

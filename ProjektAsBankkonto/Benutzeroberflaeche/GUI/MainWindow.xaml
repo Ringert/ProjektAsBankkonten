@@ -26,8 +26,8 @@
                     <ListView x:Name="listViewKunden" Height="125" SelectionChanged="listViewKunden_SelectionChanged" MouseDoubleClick="listViewKunde_MouseDoubleClick" >
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Vorname" DisplayMemberBinding="{Binding Vorname}"/>
-                                <GridViewColumn Header="Nachname" DisplayMemberBinding="{Binding Nachname}"/>
+                                <GridViewColumn Width="120" Header="Vorname" DisplayMemberBinding="{Binding Vorname}"/>
+                                <GridViewColumn Width="Auto" Header="Nachname" DisplayMemberBinding="{Binding Nachname}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -82,14 +82,14 @@
                     
                     <TextBlock Grid.Column="0" x:Name="kontoCaption" Text="Konten von:" Margin="5"></TextBlock>
 
-                    <TextBlock Grid.Column="1" x:Name="kontoValue" Text="Hans Wurst" Margin="5"></TextBlock>
+                    <TextBlock Grid.Column="1" x:Name="kontoKundeValue" Margin="5"></TextBlock>
                 </Grid>
                 
                 <Border BorderBrush="Black" BorderThickness="1" Margin="0 0 0 5">
-                    <ListView x:Name="listViewKonten" Height="125" >
+                    <ListView x:Name="listViewKonten" Height="125" SelectionChanged="listViewKonten_SelectionChanged">
                         <ListView.View>
                             <GridView>
-
+                                <GridViewColumn Width="Auto" Header="Konto" DisplayMemberBinding="{Binding KontoNr}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -101,9 +101,9 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
-                    <Button Grid.Column="0" x:Name="KontoAddButton" Content="Konto anlegen" Margin="0 0 10 0" ></Button>
+                    <Button Grid.Column="0" x:Name="KontoAddButton" Content="Konto anlegen" Margin="0 0 10 0" Click="KontoAddButton_Click"></Button>
 
-                    <Button Grid.Column="1" x:Name="KontoDelButton" Content="Konto löschen" Margin="10 0 0 0"></Button>
+                    <Button Grid.Column="1" x:Name="KontoDelButton" Content="Konto löschen" Margin="10 0 0 0" Click="KontoDelButton_Click"></Button>
                 </Grid>
 
                 <Grid Margin="5 15 0 0">
@@ -119,18 +119,18 @@
                     </StackPanel>
                     
                     <StackPanel Grid.Column="1" Margin="10 0 0 0">
-                        <TextBlock x:Name="kontonummerValue" Text="826472467462764"></TextBlock>
+                        <TextBlock x:Name="kontonummerValue"></TextBlock>
                     </StackPanel>
                 </Grid>
 
                 <StackPanel Margin="5 19 0 0">
-                    <TextBlock x:Name="filialNameValue" Text="Sparkasse Humbuk Berlin e.V"></TextBlock>
+                    <TextBlock x:Name="filialNameValue"></TextBlock>
                     
-                    <TextBlock x:Name="filialAdrValue" Text="Straßemitlangemnamenundmehr 200"></TextBlock>
+                    <TextBlock x:Name="filialAdrValue"></TextBlock>
                     
-                    <TextBlock x:Name="filialeCityValue" Text="13404, Berlin"></TextBlock>
+                    <TextBlock x:Name="filialeCityValue"></TextBlock>
                     
-                    <TextBlock x:Name="filiallandValue" Text="Deutschland"></TextBlock>
+                    <TextBlock x:Name="filiallandValue"></TextBlock>
                 </StackPanel>
             </StackPanel>
         </Grid>

@@ -239,10 +239,6 @@ namespace ProjektAsBankkonto.Datenhaltung
 
             int rowCount = command.ExecuteNonQuery();
             filiale.FilialeNr = this.getLastInsertedId();
-            if (rowCount > 0)
-            {
-                Filiale.Instances[filiale.FilialeNr] = filiale;
-            }
             return (rowCount > 0);
         }
         public bool editFiliale(Filiale filiale)
@@ -259,10 +255,6 @@ namespace ProjektAsBankkonto.Datenhaltung
             command.Parameters.Add(new SQLiteParameter("@val7", System.Data.DbType.Int32) { Value = filiale.FilialeNr });
 
             int rowCount = command.ExecuteNonQuery();
-            if (rowCount > 0)
-            {
-                Filiale.Instances[filiale.FilialeNr] = filiale;
-            }
             return (rowCount > 0);
         }
         public bool deleteFiliale(Filiale filiale)
@@ -272,31 +264,24 @@ namespace ProjektAsBankkonto.Datenhaltung
             command.Parameters.Add(new SQLiteParameter("@val1", System.Data.DbType.Int32) { Value = filiale.FilialeNr });
 
             int rowCount = command.ExecuteNonQuery();
-            if (rowCount > 0)
-            {
-                Filiale.Instances.Remove(filiale.FilialeNr);
-            }
             return (rowCount > 0);
         }
         private Filiale __createFilialeFromReader(SQLiteDataReader reader)
         {
             return new Filiale()
             {
-                FilialeNr   = (int)         reader["filiale_nr"],
-                Name        = (string)      reader["name"],
-                Strasse     = (string)      reader["strasse"],
-                Plz         = (string)      reader["plz"],
-                Ort         = (string)      reader["ort"],
-                Land        = (Laender)     reader["land"]
+                FilialeNr   = (int)(long)       reader["filiale_nr"],
+                Name        = (string)          reader["name"],
+                Strasse     = (string)          reader["strasse"],
+                Plz         = (string)          reader["plz"],
+                Ort         = (string)          reader["ort"],
+                Land        = (Laender)(int)    reader["land"],
+                Blz         = (string)          reader["blz"]
             };
         }
         public Filiale fetchFiliale(int filialeNr)
         {
             Filiale filiale;
-            if (Filiale.Instances.TryGetValue(filialeNr, out filiale))
-            {
-                return filiale;
-            }
 
             string sql = "SELECT * FROM filialen WHERE filiale_nr = @val1;";
             SQLiteCommand command = new SQLiteCommand(sql, this.m_dbConnection);
@@ -311,18 +296,18 @@ namespace ProjektAsBankkonto.Datenhaltung
         public Dictionary<int, Filiale> fetchAllFilialen()
         {
             Filiale filiale;
-
-            string sql = "SELECT * FROM filialen;";
+            Dictionary<int, Filiale> filialen = new Dictionary<int, Filiale>();
+              string sql = "SELECT * FROM filialen;";
             SQLiteCommand command = new SQLiteCommand(sql, this.m_dbConnection);
 
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
                 filiale = this.__createFilialeFromReader(reader);
-                Filiale.Instances[filiale.FilialeNr] = filiale;
+                filialen[filiale.FilialeNr] =  filiale;
             }
        
-            return Filiale.Instances;
+            return filialen;
         }
         public Dictionary<int, Filiale> fetchRangeOfFilialen(int nr, int offset)
         {
@@ -339,7 +324,6 @@ namespace ProjektAsBankkonto.Datenhaltung
             {
                 filiale = this.__createFilialeFromReader(reader);
                 filialen[filiale.FilialeNr] = filiale;
-                Filiale.Instances[filiale.FilialeNr] = filiale;
             }
 
             return filialen;
@@ -382,7 +366,7 @@ namespace ProjektAsBankkonto.Datenhaltung
         }
         public bool deleteKonto(Konto konto)
         {
-            string sql = "DELETE FROM kontonen WHERE konto_nr = @val1;";
+            string sql = "DELETE FROM konten WHERE konto_nr = @val1;";
             SQLiteCommand command = new SQLiteCommand(sql, this.m_dbConnection);
             command.Parameters.Add(new SQLiteParameter("@val1", System.Data.DbType.String) { Value = konto.KontoNr });
 
@@ -399,7 +383,7 @@ namespace ProjektAsBankkonto.Datenhaltung
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                count = (int)reader["count"];
+                count = (int)(long)     reader["count"];
             }
             return (count == 1);
         }
@@ -415,8 +399,8 @@ namespace ProjektAsBankkonto.Datenhaltung
         public Dictionary<string, Konto> fetchAllKonten(Kunde kunde)
         {
             Konto konto;
-
-            string sql = "SELECT * FROM konto WHERE kunde_nr = @val1;";
+            kunde.Konten.Clear();
+            string sql = "SELECT * FROM konten WHERE kunde_nr = @val1;";
             SQLiteCommand command = new SQLiteCommand(sql, this.m_dbConnection);
             command.Parameters.Add(new SQLiteParameter("@val1", System.Data.DbType.Int32) { Value = kunde.KundeNr });
 
