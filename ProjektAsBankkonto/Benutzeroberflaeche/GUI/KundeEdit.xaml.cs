@@ -30,6 +30,14 @@ namespace ProjektAsBankkonto.Benutzeroberflaeche
         {
             init(mainWindow);
             this.Kunde = new Kunde();
+            this.textBoxVorname.Text = this.Kunde.Vorname;
+            this.textBoxNachname.Text = this.Kunde.Nachname;
+            this.textBoxStraße.Text = this.Kunde.Strasse;
+            this.textBoxPLZ.Text = this.Kunde.Plz;
+            this.textBoxOrt.Text = this.Kunde.Ort;
+            this.datepickerGeburtsdatum.SelectedDate = this.Kunde.Geburtsdatum;
+            this.comboBoxGeschlecht.SelectedValue = this.Kunde.Geschlecht;
+            this.comboBoxLand.SelectedValue = this.Kunde.Land;
         }
 
         public KundeEdit(MainWindow mainWindow, Kunde kunde)

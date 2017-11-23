@@ -71,7 +71,6 @@ namespace ProjektAsBankkonto.Benutzeroberflaeche
 
         private void listViewKunde_MouseDoubleClick(object sender, RoutedEventArgs e)
         {
-            
             Kunde kunde = ((FrameworkElement)e.OriginalSource).DataContext as Kunde;
             if (kunde != null)
             {
